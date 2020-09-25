@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+  dashboard_worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "7777:7777"
+    depends_on:
+      - dashboard_db
+    environment:
+      POSTGRES_USER: "pe_dashboard"
+      POSTGRES_PASSWORD: "test-only-yVu8W5azUtZ8RPSWX42o"
+      POSTGRES_DB: "pe_dashboard"
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_S3_REGION_NAME: ${AWS_S3_REGION_NAME}
+
+  dashboard_db:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-postgresql
+    ports:
+      - "5432:5432"
+    environment:
+      TERM: "xterm"
+      POSTGRES_USER: "pe_dashboard"
+      POSTGRES_PASSWORD: "test-only-yVu8W5azUtZ8RPSWX42o"
+      POSTGRES_DB: "pe_dashboard"

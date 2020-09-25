@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+  dashboard_worker:
+    volumes:
+      - .:/home/hostdir
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+
+  dashboard_db:
+    volumes:
+      - .:/home/hostdir

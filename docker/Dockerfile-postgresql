@@ -1,0 +1,15 @@
+FROM postgres:13.0
+
+# helpful aliases
+COPY ./docker/bashrc_to_docker /root/.bashrc
+
+# ARG vars exist only during build
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -q && apt-get install -y --no-install-recommends \
+        git-core curl less psmisc rsync \
+        vim-tiny
+
+RUN rm -rf /var/lib/apt/lists/*
+
+WORKDIR /home/hostdir
