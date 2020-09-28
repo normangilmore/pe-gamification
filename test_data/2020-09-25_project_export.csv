@@ -1,0 +1,118 @@
+id,name,short_name
+3,Look-Elsewhere and CorrCaus 8-1-17 Test,8-1-17-PE-SchemaTest
+9,NormanTeachingMeStuff,Test1
+10,You are Being Tested,Testy
+11,Tested2,Testtest
+14,Example_Starting,Example_Starting
+15,Example_Calibration,Calibration
+16,Emotionally Loaded Language Examples,Emotionally Loaded Language Examples
+17,Exaggeration Examples,Exaggeration Examples
+19,LogicalFallaciesTrainer,logfall
+28,CredCo_WebConf_Testing_6,CredCo_WebConf_Testing_6
+30,PE Flagger 1,Flagger1
+31,PE Flagger 2,Flagger2
+32,PE Flagger 3,Flagger3
+43,PE Triager - Part 4,PE_Triager_4
+44,PE Triager - Part 5,PE_Triager_5
+45,PE Triager - Part 6,PE_Triager_6
+51,SpecialistLogic1,speclog1
+52,SpecialistLogic2,speclog2
+53,SpecialistLogic3,speclog3
+55,SpecialistBias2,specbias2
+56,SpecialistBias3,specbias3
+57,Specialist Science 1,specsci1
+58,SpecialistSci2,specsci2
+59,SpecialistSci3,specsci3
+60,SpecialistTone1,spectone1
+61,SpecialistTone2,spectone2
+62,SpecialistTone3,spectone3
+65,SSS PublicEditor 2018 Causality V2,SSSPECaus2
+66,SSS PublicEditor 2018 Signal and Noise V2,SSSPESigV2
+71,Flagger Gold Standard v0,PEFlaggerGSv0
+72,Triagerv1.0,Triagerv1.0
+76,SemanticsTriager1.1C2,SemanticsTriager1.1C2
+79,ReasoningSpecialist1.1C,ReasoningSpecialist1.1C
+85,FormTriager1.2C2,FormTriager1.2C2
+87,SemanticsTriager1.3C2,SemanticsTriager1.3C2
+88,PreAlphaSources,PreAlphaSources
+89,PreAlphaCorrCaus,PreAlphaCorrCause
+92,PreAlphaHolistic2,PreAlphaHolistic2
+93,PreAlphaLanguage,PreAlphaLanguage
+95,SemanticsTriager1.4C2,SemanticsTriager1.4C2
+96,PreAlphaSources2,PreAlphaSources2
+100,Demo1_SemanticsTriager,Demo1SemTri
+101,Demo1_FormTriager,Demo1_ForTri
+104,LanguageDemoTest2,LangDemoTest2
+105,ReasoningDemoTest,ReasonDemoTest
+106,EvidenceDemoTest,EvDemoTest
+109,Demo1_Language,DemoLang
+110,Demo1_Reasoning,Demo1Reas
+111,Demo1_Evidence,Demo1Evi
+112,Demo1_Probability,Demo1Prob
+114,Demo1_QuotedSources,Demo1QuoSour
+117,Demo1_ArgumentRelevance3,Demo1ArgRel3
+118,Demo1_Language2,Demo1Lang2
+119,Demo1_SemanticsTriager1,demosemtriage
+120,BETA_Semantics_Triage,BETA_Semantics_Triage
+121,BETA_Form_Triage,BETA_Form_Triage
+126,Demo3_DataHunt_Evidence,Demo3dhEvi
+127,Demo3_DataHunt_Language,Demo3dhLang
+128,Demo3_DataHunt_Probability,Demo3dhProb
+129,Demo3_DataHunt_Reasoning,Demo3dhReas
+130,Demo3_DataHunt_Evidence2,Demo3dhEvi2
+134,Demo3_DataHunt_ArgumentRelevance3,Demo3dhArgRel3
+135,Demo3_DataHunt_SourceRelevance3,Demo3dhSourceRel3
+138,Election_Arguments,ElectArg
+140,Election_Sources2,ElectSource2
+144,Election_Language3,ElectLang3
+145,Election_Probability2,ElectProb2
+146,Election_Reasoning2,ElectReas2
+147,Election_Evidence,ElectEvi
+148,Test,Test
+149,softcite,scds
+150,test,test
+162,Spring 2019 Urap Reasoning,Sp19_reasoning
+164,Spring 2019 Urap Probability 1,Sp19probability_1
+165,March2019_SemanticsTriager,march2019SemTri
+167,Sp 19 March Probability,sp19_march_probability
+168,Sp 19 March Reasoning,sp19_march_reasoning
+174,Spring 19 Urap Source 20190416,sp19_urap_source
+175,Spring 19 Urap Argument Relevance 20190416,sp19_urap_argument
+176,Australian Elections,AusVotes
+181,Sp 19 Urap March FormTriage,Sp-19-Urap-March-FormTriage
+182,Sp 19 Urap Holistic,Sp-19-Urap-Holistic
+186,Sp 19 May Evidence,Sp-19-May-Evidence
+187,Sp 19 May Language,Sp-19-May-Language
+188,Sp 19 May Quoted Source,Sp-19-May-Quoted-Source
+189,Sp 19 May Argument Relevance,Sp-19-May-Argument-Relevance
+209,BETA_Language,BETA_Language
+210,BETA_Evidence,BETA_Evidence
+211,BETA_Probability,BETA_Probability
+212,BETA_Reasoning,BETA_Reasoning
+214,BETA_Argument_Relevance,BETA_Argument_Relevance
+215,BETA_Quoted_Sources,BETA_Quoted_Sources
+217,NYU_Semantics,NYU_Semantics
+218,NYU_Form,NYU_Form
+219,NYU_Arguments,NYU_Arguments
+220,NYU_QuotedSources,NYU_QuotedSources
+221,DEPRECATED_NYU_Language,NYU_Language
+222,NYU_Evidence,NYU_Evidence
+223,DEPRECATED_NYU_Probability,NYU_Probability
+225,DEPRECATED_NYU_Reasoning,NYU_Reasoning
+229,NYU_Reasoning2,NYU_Reasoning2
+230,NYU_Language2,NYU_Language2
+231,NYU_Probability2,NYU_Probability2
+232,NYU_Overall,NYU_Overall
+233,Holistic Evaluation 2020 NYU,Holistic-Evaluation-2020-NYU
+234,NYU_Holistic,NYU_Holistic
+235,Covid_Semantics1.0,Covid_Semantics1.0
+236,Covid_Form1.0,Covid_Form1.0
+237,Test_CovidSources,Test_CovidSources
+238,Covid_SourceRelevancev1,Covid_SourceRelevancev1
+242,Covid_ArgumentRelevancev1.2,Covid_ArgumentRelevancev1.2
+244,Covid_Languagev1.1,Covid_Languagev1.1
+245,Covid_Probabilityv1,Covid_Probabilityv1
+246,Covid_Evidencev1,Covid_Evidencev1
+247,Covid_Reasoningv1,Covid_Reasoningv1
+250,Covid_Holisiticv1.2,Covid_Holisiticv1.2
+252,ResearchAdminGuideExampleModule,ResearchAdminGuideExampleModule
