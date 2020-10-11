@@ -345,11 +345,11 @@ SELECT project_id, user_id, user_rank, finish_time,
        FIRST_VALUE(finish_time) OVER w2 first_finish_time
 FROM ranked_taskruns
 WHERE user_rank=25
-  WINDOW w2 as (
-    PARTITION BY project_id
-    ORDER BY finish_time
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  )
+WINDOW w2 as (
+  PARTITION BY project_id
+  ORDER BY finish_time
+  ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+)
 ORDER BY project_id, finish_time
 ;
 
@@ -367,11 +367,11 @@ WITH project_achievements as (
          FIRST_VALUE(finish_time) OVER w2 first_finish_time
   FROM ranked_taskruns
   WHERE user_rank=25
-    WINDOW w2 as (
-      PARTITION BY project_id
-      ORDER BY finish_time
-      ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-    )
+  WINDOW w2 as (
+    PARTITION BY project_id
+    ORDER BY finish_time
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  )
   ORDER BY project_id, finish_time
 )
 SELECT * FROM project_achievements
@@ -391,11 +391,11 @@ WITH project_achievements as (
          FIRST_VALUE(finish_time) OVER w2 first_finish_time
   FROM ranked_taskruns
   WHERE user_rank=25
-    WINDOW w2 as (
-      PARTITION BY project_id
-      ORDER BY finish_time
-      ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-    )
+  WINDOW w2 as (
+    PARTITION BY project_id
+    ORDER BY finish_time
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  )
   ORDER BY finish_time
 )
 SELECT * FROM project_achievements
