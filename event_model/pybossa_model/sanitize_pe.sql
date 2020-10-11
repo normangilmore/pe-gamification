@@ -8,6 +8,7 @@ update "user" set api_key = "user".id;
 update "user" set email_addr = "user".id;
 update "user" set name="user".id;
 update "user" set fullname="user".id;
+update "user" set info='{}';
 
 -- Just tidying.
 truncate auditlog;
