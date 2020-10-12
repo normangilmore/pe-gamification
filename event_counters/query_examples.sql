@@ -290,6 +290,11 @@ FROM earnable_badges
 ;
 
 -- Let's define a WINDOW so we can rank order rows with the RANK window function.
+-- https://www.postgresql.org/docs/13/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS
+-- n.b. default WINDOW frame is RANGE UNBOUNDED PRECEDING which is equivalent to
+-- RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+-- This is NOT all the rows in the partition, which is not a problem for RANK()
+-- but may not be what you expect when using other functions, like LAG or LAST.
   SELECT project_id, user_id, RANK() over w, finish_time
   FROM task_run
   WINDOW w as (ORDER BY finish_time)
@@ -302,7 +307,7 @@ FROM earnable_badges
   ORDER BY project_id
 ;
 
--- Ok, we need to GROUP BY project_id and user_id
+-- Ok, we need to PARTITION BY project_id and user_id
   SELECT project_id, user_id, RANK() over w, finish_time
   FROM task_run
   WINDOW w as (
@@ -332,7 +337,11 @@ WHERE user_rank=25
 
 -- Let's apply a WINDOW function over projects to see who
 -- was the first person to contribute 25 tasks to a project.
--- and let's add a finish_order to keep track
+-- We'll call this RANK finish_order.
+-- We'll also add columns showing the FIRST_VALUE of user_id and finish_time.
+-- Even though the default RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+-- works, it's probably better to specify we are considering the entire frame:
+-- ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
 WITH ranked_taskruns as (
   SELECT project_id, user_id, RANK() over w user_rank, finish_time
   FROM task_run
