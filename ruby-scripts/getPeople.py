@@ -45,8 +45,9 @@ def get_names(user_ids):
     return names
 
 
-# write dictionary to CSV file
-names_dict = get_names(get_ids(project_ids))
-with open('people.csv', 'w') as f:
-    for key in names_dict.keys():
-        f.write("%s, %s\n" % (key, names_dict[key]))
+if __name__ == "__main__":
+    # Write dictionary to CSV file
+    names_dict = get_names(get_ids(project_ids))
+    with open('people.csv', 'w') as f:
+        for key in names_dict.keys():
+            f.write("%s, %s\n" % (key, names_dict[key]))
