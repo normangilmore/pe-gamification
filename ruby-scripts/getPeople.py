@@ -20,7 +20,7 @@ def get_ids(project_ids):
     for project_id in project_ids:
         r = requests.get('https://pe.goodlylabs.org/api/taskrun?api_key='
                          + api_key + '&project_id=' + project_id +
-                         '&orderby=id', headers=headers)
+                         '&orderby=id&limit=100', headers=headers)
         task_runs = json.loads(r.text)
         # For each task, either add the user id or incremement the id's count
         for task in task_runs:
