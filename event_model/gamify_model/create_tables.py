@@ -26,9 +26,7 @@ def create_gamify_tables(echo=False):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
-    print(Base.metadata.tables.keys())
     return session
 
 
