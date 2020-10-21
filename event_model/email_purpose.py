@@ -8,11 +8,11 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.mutable import MutableDict
 
-from event_model.gamify_model.base import Base
+from event_model.base import Base
 
 from event_model.utility import make_timestamp
-from event_model.gamify_model.badge_award import BadgeAward
-from event_model.gamify_model.email_candidate import EmailCandidate
+from event_model.badge_award import BadgeAward
+from event_model.email_candidate import EmailCandidate
 
 
 class EmailPurpose(Base):

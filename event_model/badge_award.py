@@ -6,11 +6,11 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.mutable import MutableDict
 
-from event_model.gamify_model.base import Base
+from event_model.base import Base
 from event_model.utility import make_timestamp
 
-from event_model.gamify_model.user import User
-from event_model.gamify_model.badge import Badge
+from event_model.user import User
+from event_model.badge import Badge
 
 
 class BadgeAward(Base):

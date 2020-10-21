@@ -6,12 +6,12 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.mutable import MutableDict
 
-from event_model.gamify_model.base import Base
+from event_model.base import Base
 
 from event_model.utility import make_timestamp
-from event_model.gamify_model.project import Project
-from event_model.gamify_model.task_run import TaskRun
-from event_model.gamify_model.user import User
+from event_model.project import Project
+from event_model.task_run import TaskRun
+from event_model.user import User
 
 
 class EmailCandidate(Base):

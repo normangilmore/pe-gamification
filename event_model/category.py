@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.mutable import MutableDict, MutableList
 
-from event_model.pybossa_model.base import Base
+from event_model.base import Base
 
 from event_model.utility import make_timestamp
 
@@ -24,3 +24,5 @@ class Category(Base):
     description = Column(Text, nullable=False)
     #: UTC timestamp when the Category was created
     created = Column(Text, default=make_timestamp)
+    #: Info field formatted as JSON for storing additional data
+    info = Column(MutableDict.as_mutable(JSONB), default=dict())

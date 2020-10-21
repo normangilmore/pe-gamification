@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.ext.mutable import MutableDict
 
-from event_model.gamify_model.base import Base
+from event_model.base import Base
 
 from event_model.utility import make_timestamp
 
