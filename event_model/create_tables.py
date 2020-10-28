@@ -17,7 +17,7 @@ from event_model.email_candidate import EmailCandidate
 from event_model.email_purpose import EmailPurpose
 
 
-def create_gamify_tables(echo=False):
+def create_gamify_tables(echo=False, returnEngine=False):
     engine = create_engine(
         "postgresql://pe_dashboard:test-only-yVu8W5azUtZ8RPSWX42o@localhost:5432/pe_dashboard",
         echo=echo,
@@ -26,7 +26,10 @@ def create_gamify_tables(echo=False):
     session = Session()
 
     Base.metadata.create_all(engine)
-    return session
+    if returnEngine:
+        return session, engine
+    else:
+        return session
 
 
 if __name__ == "__main__":
