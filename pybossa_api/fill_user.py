@@ -24,7 +24,8 @@ def fill_user(user_ids, write=True):
         emails[user] = [user_info['fullname'], user_info['email_addr']]
     if write:
         with open('user.csv', 'w') as f:
-            writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            writer = csv.writer(f, delimiter=',', quotechar='"',
+                                quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["id", "name", "email"])
             for i in emails:
                 writer.writerow([i, emails[i][0], emails[i][1]])
