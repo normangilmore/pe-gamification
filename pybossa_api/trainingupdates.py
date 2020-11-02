@@ -26,7 +26,7 @@ def generateCSV(user_ids, filename='user', write=True):
             emails[user] = [user_info['fullname'],
                             user_info['email_addr'], user_ids[user]]
     if write:
-        with open('{}.csv'.format(filename), 'w') as f:
+        with open('trainingupdates_output/{}.csv'.format(filename), 'w') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["name", "email", "tasks"])
