@@ -1,6 +1,5 @@
 # How to use trainingupdates.py
-
-### The purpose of trainingupdates.py is to take in a list of projects (such as the training projects) and generate a CSV file for each project that contains which users did tasks in the project, their email, and how many tasks they completed.
+The purpose of trainingupdates.py is to take in a list of projects (such as the training projects) and generate a CSV file for each project that contains which users did tasks in the project, their email, and how many tasks they completed.
 
 ### Necessary files and libraries:
 * json
