@@ -10,7 +10,7 @@ headers = {
 }
 
 
-def fill_user(user_ids, write=True):
+def fill_user(user_ids, filename='user', write=True):
     """
     Input: user_ids dictionary (user ids: task values)
     Output: csv file with user id, name, email
@@ -23,7 +23,7 @@ def fill_user(user_ids, write=True):
         user_info = json.loads(r.text)
         emails[user] = [user_info['fullname'], user_info['email_addr']]
     if write:
-        with open('user.csv', 'w') as f:
+        with open('{}.csv'.format(filename), 'w') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["id", "name", "email"])
