@@ -24,12 +24,13 @@ def fill_project(project_names, filename='project', write=True):
         project_ids = json.loads(r.text)[0]
         projects[project_ids['id']] = [project_ids['name'],
                                        project_ids['short_name'],
-                                       project_ids['category_id']]
+                                       project_ids['category_id'], 
+                                       project_ids['info']]
     if write:
         with open('{}.csv'.format(filename), 'w') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(["id", "name", "short_name", "category_id"])
+            writer.writerow(["id", "name", "short_name", "category_id", "info"])
             for i in projects:
                 writer.writerow([i, projects[i][0], projects[i][1],
                                  projects[i][2]])
