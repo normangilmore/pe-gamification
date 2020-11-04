@@ -32,9 +32,9 @@ def get_ids(project_ids, months=None):
     else:
         for project_id in project_ids:
             r = requests.get('https://pe.goodlylabs.org/api/taskrun?api_key={}'
-                             '&project_id={}&created={}&all=1&orderby=id&limit=100'
-                             .format(PYBOSSA_API_KEY, project_id, m),
-                             headers=headers)
+                         '&project_id={}&orderby=id&limit=100'
+                         .format(PYBOSSA_API_KEY, project_id),
+                         headers=headers)
             task_runs = json.loads(r.text)
             # For each task, either add the user id or incremement the id's count
             for task in task_runs:

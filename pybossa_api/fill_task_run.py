@@ -1,3 +1,4 @@
+from get_people import get_ids
 import requests
 import json
 import os
@@ -7,44 +8,6 @@ PYBOSSA_API_KEY = os.getenv('PYBOSSA_API_KEY')
 headers = {
   'Content-Type': 'application/json',
 }
-
-def get_ids(project_ids, months=None):
-    """
-    Input: List of project IDs, (optional) a list of months formatted 'YYYY-MM'
-    Output: Dictionary of (key) user_ids and (value) the amount of tasks
-    they've completed for the given projects
-    """
-    user_ids = {}
-    if months:
-        for m in months:
-            for project_id in project_ids:
-                r = requests.get('https://pe.goodlylabs.org/api/taskrun?api_key={}'
-                                 '&project_id={}&created={}&all=1&orderby=id&limit=100'
-                                 .format(PYBOSSA_API_KEY, project_id, m),
-                                 headers=headers)
-                task_runs = json.loads(r.text)
-                # For each task, either add the user id or incremement the id's count
-                for task in task_runs:
-                    if str(task['user_id']) in user_ids:
-                        user_ids[str(task['user_id'])] += 1
-                    else:
-                        user_ids[str(task['user_id'])] = 1
-    else:
-        for project_id in project_ids:
-            r = requests.get('https://pe.goodlylabs.org/api/taskrun?api_key={}'
-                         '&project_id={}&orderby=id&limit=100'
-                         .format(PYBOSSA_API_KEY, project_id),
-                             headers=headers)
-            task_runs = json.loads(r.text)
-            # For each task, either add the user id or incremement the id's count
-            for task in task_runs:
-                if str(task['user_id']) in user_ids:
-                    user_ids[str(task['user_id'])] += 1
-                else:
-                    user_ids[str(task['user_id'])] = 1
-    return user_ids
-
-
 
 def fill_taskrun(user_ids, project_ids):
     '''
