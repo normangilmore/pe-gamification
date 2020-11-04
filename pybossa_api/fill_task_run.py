@@ -1,5 +1,4 @@
 
-from get_people import get_ids
 import requests
 import json
 import os
@@ -10,11 +9,11 @@ headers = {
   'Content-Type': 'application/json',
 }
 
-def fill_taskrun(user_ids, project_ids):
+def fill_taskrun(project_ids):
     '''
-    Input: taskrun_dict dictionary (user id: task values)
-    Output: csv file with taskrun id, timestamp, project id, task id,
-    and user id
+    Input: project_ids
+    Output: csv file with taskrun id, created timestamp, project id,
+    task id, user id, finish time, and info
     '''
     task_dict = {}
     for project_id in project_ids:
@@ -42,8 +41,7 @@ def fill_taskrun(user_ids, project_ids):
 if __name__ == '__main__':
     project_names = ['Covid2_FormTriage', 'Covid2_SemanticsTriage']
     project_ids = ['253', '254']
-    user_ids = get_ids(project_ids)
-    taskrun_ids = fill_taskrun(user_ids, project_ids)
+    taskrun_ids = fill_taskrun(project_ids)
     print(taskrun_ids)
 
 
