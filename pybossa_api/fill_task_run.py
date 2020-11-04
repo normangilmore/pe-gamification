@@ -1,3 +1,4 @@
+
 from get_people import get_ids
 import requests
 import json
@@ -25,14 +26,17 @@ def fill_taskrun(user_ids, project_ids):
         index = 0
         for task_run in task_runs:
             index += 1
-            task_dict[index] = [task_run['id'], task_run['created'], task_run['project_id'], task_run['task_id'],
-            task_run['user_id'], task_run['finish_time'], task_run['info']]
+            task_dict[index] = [task_run['id'], task_run['created'],
+            task_run['project_id'], task_run['task_id'], task_run['user_id'],
+            task_run['finish_time'], task_run['info']]
     with open('task_run.csv', 'w') as f:
         writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        writer.writerow(["id", "created", "project_id", "task_id", "user_id", "finish_time", 'info'])
+        writer.writerow(["id", "created", "project_id", "task_id",
+        "user_id", "finish_time", 'info'])
         for i in task_dict:
-            writer.writerow([task_dict[i][0], task_dict[i][1], task_dict[i][2], task_dict[i][3], task_dict[i][4], task_dict[i][5]])
-
+            writer.writerow([task_dict[i][0], task_dict[i][1], 
+                task_dict[i][2], task_dict[i][3], task_dict[i][4],
+                task_dict[i][5]])
 
 
 if __name__ == '__main__':
