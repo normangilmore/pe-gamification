@@ -22,7 +22,6 @@ def fill_taskrun(project_ids, write=True):
                          .format(PYBOSSA_API_KEY, project_id),
                          headers=headers)
         task_runs = json.loads(r.text)
-        print(len(task_runs))
         last = len(task_runs) - 1
         for i in range(len(task_runs)):
             task_run = task_runs[i]
@@ -41,7 +40,6 @@ def fill_taskrun(project_ids, write=True):
                              .format(PYBOSSA_API_KEY, project_id, lastID),
                              headers=headers)
             task_runs = json.loads(r.text)
-            print(len(task_runs))
             last = len(task_runs) - 1
             for i in range(len(task_runs)):
                 task_run = task_runs[i]
@@ -62,9 +60,14 @@ def fill_taskrun(project_ids, write=True):
             for i in task_dict:
                 tr = task_dict[i]
                 if type(tr[5]) is dict and tr[3]:
-                    writer.writerow([i, tr[0], tr[1], tr[2],
-                                     tr[3], tr[4],
-                                     tr[5]['highlight_group']['topic_name']])
+                    if tr[5]['highlight_group']['topic_name'] == 'Show Entire Document':
+                        writer.writerow([i, tr[0], tr[1], tr[2],
+                                         tr[3], tr[4],
+                                         'Form'])
+                    else:
+                        writer.writerow([i, tr[0], tr[1], tr[2],
+                                         tr[3], tr[4],
+                                         tr[5]['highlight_group']['topic_name']])
     else:
         return task_dict
 
@@ -76,4 +79,4 @@ if __name__ == '__main__':
                      "Covid_Form1.0", "Covid_Evidencev1",
                      "Covid_ArgumentRelevancev1.2"]
     project_ids = get_projectIDs(project_names).values()
-    taskruns = fill_taskrun(project_ids, write=False)
+    taskruns = fill_taskrun(project_ids, write=True)
