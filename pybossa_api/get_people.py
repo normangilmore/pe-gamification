@@ -76,23 +76,7 @@ def get_projectIDs(project_names):
     return project_ids
 
 
-def get_categories(project_names):
-    for project_name in project_names:
-        r = requests.get('https://pe.goodlylabs.org/project/category/short_name={}/?api_key={}'
-                         '&orderby=id&limit=100'
-                         .format(project_name, PYBOSSA_API_KEY),
-                         headers=headers)
-        info = json.loads(r.text)
-        print(info)
-
-
 if __name__ == '__main__':
     project_names = ['Covid2_FormTriage', 'Covid2_SemanticsTriage']
     project_ids = ['253', '254']
     user_ids = get_ids(project_ids)
-    #emails = fill_taskrun(user_ids, project_ids)
-    #emails = fill_user(user_ids)
-    #print(emails)
-    #names_dict = get_names(user_ids)
-    get_categories(project_names)
-    #user_ids = get_ids(project_ids)
