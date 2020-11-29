@@ -9,7 +9,7 @@ from event_model.base import Base
 from event_model.task_run import TaskRun
 from event_model.task import Task
 from event_model.project import Project
-from event_model.category import Category
+#from event_model.category import Category
 from event_model.user import User
 from event_model.badge import Badge
 from event_model.badge_award import BadgeAward
@@ -22,15 +22,18 @@ def create_gamify_tables(echo=False, returnEngine=False):
         "postgresql://pe_dashboard:test-only-yVu8W5azUtZ8RPSWX42o@localhost:5432/pe_dashboard",
         echo=echo,
     )
+    
     Session = sessionmaker(bind=engine)
     session = Session()
 
     Base.metadata.create_all(engine)
+    """
     if returnEngine:
         return session, engine
     else:
         return session
-
+    """
+    return engine
 
 if __name__ == "__main__":
-    session = create_gamify_tables(False)
+    engine = create_gamify_tables(False)

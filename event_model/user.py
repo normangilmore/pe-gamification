@@ -17,9 +17,9 @@ class User(Base):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)
-    email_addr = Column(Unicode(length=254), unique=True, nullable=False)
+    email_addr = Column(Unicode(length=254), unique=False, nullable=False)
     #: Name of the user (this is used as the nickname).
-    name = Column(Unicode(length=254), unique=True, nullable=False)
+    name = Column(Unicode(length=254), unique=False, nullable=False)
     # Relationships
     task_runs = relationship(TaskRun, backref="user")
-    projects = relationship(Project, backref="owner")
+    #projects = relationship(Project, backref="owner")

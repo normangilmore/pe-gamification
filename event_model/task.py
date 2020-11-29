@@ -19,12 +19,12 @@ class Task(Base):
     id = Column(Integer, primary_key=True)
     #: Project.ID that this task is associated with.
     project_id = Column(
-        Integer, ForeignKey("project.id", ondelete="CASCADE"), nullable=False
+        Integer, ForeignKey("project.id", ondelete="CASCADE"), nullable=True
     )
     #: Task.state: ongoing or completed.
     state = Column(UnicodeText, default="ongoing")
     #: Task.info field in JSON with the data for the task.
-    info = Column(JSONB)
+    info = Column(JSONB, default="")
     task_runs = relationship(
         TaskRun, cascade="all, delete, delete-orphan", backref="task"
     )

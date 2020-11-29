@@ -10,7 +10,7 @@ from event_model.base import Base
 
 from event_model.utility import make_timestamp
 
-
+"""
 class Category(Base):
     __tablename__ = "category"
 
@@ -26,3 +26,4 @@ class Category(Base):
     created = Column(Text, default=make_timestamp)
     #: Info field formatted as JSON for storing additional data
     info = Column(MutableDict.as_mutable(JSONB), default=dict())
+"""
