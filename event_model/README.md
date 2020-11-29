@@ -7,3 +7,5 @@ For Denny + Jeremey + myself when I forget:
 • Then run `event_model/create_tables.py`
 
 • Then run `event_model/insert_tr.py`
+
+WORK IN PROGRESS ik it's ugly 
