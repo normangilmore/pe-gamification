@@ -2,7 +2,7 @@
 
 1. Getting the data
    - Run `event_model/fill_db_data.py` to generate a CSV with the data to insert into our database
-   - `fill_db_data.py` requires a list of project names and generaters a CSV file with the following columns (added parentheses for clarification): 
+   - `fill_db_data.py` requires a list of project names and generates a CSV file with the following columns (added parentheses for clarification): 
       
       `id(taskrun),created(taskrun),project_id,task_id,user_id,finish_time(taskrun),task_type,project_name,name(user),email_addr(user)`
 
