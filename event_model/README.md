@@ -1,11 +1,14 @@
-Hacked around and got stuff to insert
+#Steps 
 
-For Denny + Jeremey + myself when I forget:
+1. Getting the data
+Run `event_model/fill_db_data.py` to generate a CSV with the data to insert into our database
 
-• Run docker, do the usual setting the python path thing (`export PYTHONPATH=. python3 event_model/create_tables.py`)
+2. Inserting the data
+  * Run docker
+  * Set the python path 
+    `export PYTHONPATH=. `
+    `python3 event_model/create_tables.py`
+  * Run `event_model/create_tables.py` (might have to drop the tables, then run this file again if you've previously ran it)
+  * Run `event_model/insert_data.py`
 
-• Then run `event_model/create_tables.py`
-
-• Then run `event_model/insert_tr.py`
-
-WORK IN PROGRESS ik it's ugly 
+3. Querying data 
