@@ -1,4 +1,4 @@
-from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey
+from sqlalchemy import Table, Column, Integer, String, MetaData, ForeignKey, Unicode
 from sqlalchemy import Text
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -23,7 +23,7 @@ class TaskRun(Base):
     task_id = Column(Integer, ForeignKey(
         "task.id", ondelete="CASCADE"), nullable=True)
     #: User.id of the user contributing the TaskRun (only if authenticated)
-    user_id = Column(Integer, ForeignKey("user.id"))
+    user_id = Column(Integer, ForeignKey("profile.id"))
     #: UTC timestamp for when TaskRun is saved to DB.
     finish_time = Column(Text, default=make_timestamp)
-    task_type = Column(JSONB)
+    task_type = Column(Unicode(length=254), unique=False, nullable=False)
