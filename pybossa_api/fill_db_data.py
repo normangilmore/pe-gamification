@@ -113,6 +113,5 @@ if __name__ == '__main__':
                      "Covid_Languagev1.1", "Covid_Holisiticv1.2",
                      "Covid_Form1.0", "Covid_Evidencev1",
                      "Covid_ArgumentRelevancev1.2"]
-    ids = get_categoryIDs(categories)
     project_dict = get_projectIDs(project_names)
     taskruns = fill_taskrun(project_dict, write=True)
