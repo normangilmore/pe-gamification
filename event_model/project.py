@@ -20,15 +20,17 @@ class Project(Base):
     #: ID of the project
     id = Column(Integer, primary_key=True)
     #: Project name
-    name = Column(Unicode(length=255), unique=False, default = 'none', nullable=False)
+    name = Column(Unicode(length=255), unique=False,
+                  default='none', nullable=False)
     #: Project slug for the URL
-    short_name = Column(Unicode(length=255), unique=False, default = 'none', nullable=False)
+    short_name = Column(Unicode(length=255), unique=False,
+                        default='none', nullable=False)
     #: Project Category
     #category_id = Column(Integer, ForeignKey("category.id"), default = 0, nullable=False)
     #: Project info field formatted as JSON
     info = Column(MutableDict.as_mutable(JSONB), default=dict())
-    #tasks = relationship(
-      #  Task, cascade="all, delete, delete-orphan", backref="project")
+    # tasks = relationship(
+    #  Task, cascade="all, delete, delete-orphan", backref="project")
     task_runs = relationship(
         TaskRun,
         backref="project",
