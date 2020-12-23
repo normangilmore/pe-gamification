@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import csv
-from get_people import get_ids, get_projectIDs
+from utils import get_ids, get_projectIDs
 
 
 PYBOSSA_API_KEY = os.getenv('PYBOSSA_API_KEY')
