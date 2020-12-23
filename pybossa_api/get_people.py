@@ -75,8 +75,17 @@ def get_projectIDs(project_names):
         project_ids[project_name] = (project_info[0]['id'])
     return project_ids
 
-
-if __name__ == '__main__':
-    project_names = ['Covid2_FormTriage', 'Covid2_SemanticsTriage']
-    project_ids = ['253', '254']
-    user_ids = get_ids(project_ids)
+def get_categoryIDs(category_names):
+    """
+    Input: list of category names
+    Output: list of projects
+    """
+    ids = {}
+    for category in category_names:
+        r = requests.get('https://pe.goodlylabs.org/api/category?api_key={}'
+                         '&short_name={}&orderby=id&limit=100'
+                         .format(PYBOSSA_API_KEY, category),
+                         headers=headers)
+        cat_info = json.loads(r.text)
+        ids[category] = cat_info[0]['id']
+    return ids

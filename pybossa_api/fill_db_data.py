@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import csv
-from get_people import get_projectIDs
+from utils import get_projectIDs, get_categoryIDs
 
 PYBOSSA_API_KEY = os.getenv('PYBOSSA_API_KEY')
 headers = {
@@ -28,7 +28,7 @@ def fill_taskrun(project_dict, write=True):
         for i in range(len(task_runs)):
             task_run = task_runs[i]
             user = task_run['user_id']
-            if user not in emails:
+            if user not in emails and user is not None:
                 print("adding user:", user)
                 req = requests.get('https://pe.goodlylabs.org'
                                    '/api/user/{}'
@@ -37,7 +37,7 @@ def fill_taskrun(project_dict, write=True):
                                            headers=headers)
                 user_info = json.loads(req.text)
                 emails[user] = user_info
-            else:
+            elif user is not None:
                 user_info = emails[user]
             if 'fullname' in user_info:
                 task_dict[task_run['id']] = [task_run['created'],
@@ -62,14 +62,14 @@ def fill_taskrun(project_dict, write=True):
             for i in range(len(task_runs)):
                 task_run = task_runs[i]
                 user = task_run['user_id']
-                if user not in emails:
+                if user not in emails and user is not None:
                     print("adding user:", user)
                     req = requests.get('https://pe.goodlylabs.org'
                                        '/api/user/{}?api_key={}&limit=100'
                                        .format(user, PYBOSSA_API_KEY), headers=headers)
                     user_info = json.loads(req.text)
                     emails[user] = user_info
-                else:
+                elif user is not None:
                     user_info = emails[user]
                 if 'fullname' in user_info:
                     task_dict[task_run['id']] = [task_run['created'],
@@ -83,7 +83,6 @@ def fill_taskrun(project_dict, write=True):
                                                  user_info['email_addr']]
                 if i == last:
                     lastID = task_run['id']
-    print(task_dict)
     if write:
         with open('rubyruby.csv', 'w') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',
@@ -108,10 +107,12 @@ def fill_taskrun(project_dict, write=True):
 
 
 if __name__ == '__main__':
+    categories = ["covidarticles", "covidtrainingtasks"]
     project_names = ['Covid_SourceRelevancev1', 'Covid_Semantics1.0',
                      "Covid_Reasoningv1", "Covid_Probabilityv1",
                      "Covid_Languagev1.1", "Covid_Holisiticv1.2",
                      "Covid_Form1.0", "Covid_Evidencev1",
                      "Covid_ArgumentRelevancev1.2"]
+    ids = get_categoryIDs(categories)
     project_dict = get_projectIDs(project_names)
     taskruns = fill_taskrun(project_dict, write=True)
