@@ -11,7 +11,7 @@ from event_model.base import Base
 from event_model.utility import make_timestamp
 from event_model.task import Task
 from event_model.task_run import TaskRun
-#from event_model.category import Category
+from event_model.category import Category
 
 
 class Project(Base):
@@ -26,7 +26,7 @@ class Project(Base):
     short_name = Column(Unicode(length=255), unique=False,
                         default='none', nullable=False)
     #: Project Category
-    #category_id = Column(Integer, ForeignKey("category.id"), default = 0, nullable=False)
+    category_id = Column(Integer, ForeignKey("category.id"), default = 0, nullable=False)
     #: Project info field formatted as JSON
     info = Column(MutableDict.as_mutable(JSONB), default=dict())
     # tasks = relationship(
@@ -37,4 +37,4 @@ class Project(Base):
         cascade="all, delete-orphan",
         order_by="TaskRun.finish_time.desc()",
     )
-    #category = relationship(Category)
+    category = relationship(Category)

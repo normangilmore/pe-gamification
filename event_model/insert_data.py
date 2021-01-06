@@ -31,7 +31,8 @@ def insert_data(filename):
             in_proj = session.query(Project).filter(Project.id == row['project_id']).first()
             if in_proj is None:
                 p = Project(id=row['project_id'],
-                            name=row['project_name'])
+                            name=row['project_name'],
+                            category_id=row['category'])
                 session.add(p)
                 session.commit()
             # If task not in task table, then add
@@ -46,7 +47,7 @@ def insert_data(filename):
                          finish_time=row['finish_time'],
                          task_type=row['task_type'])
             session.add(tr)
-        session.commit()
+            session.commit()
 
 if __name__ == "__main__":
     insert_data('taskruns.csv')

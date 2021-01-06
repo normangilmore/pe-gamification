@@ -17,11 +17,11 @@ from event_model.user import User
 class EmailCandidate(Base):
     __tablename__ = "email_candidate"
 
-    # Information for specific email to an user
+    # Information for specific email to a user
     id = Column(Integer, primary_key=True)
-    to_email_addr = Column(Unicode(length=254), unique=True, nullable=False)
+    to_email_addr = Column(Unicode(length=254), unique=False, nullable=False)
     to_username = Column(Text, nullable=False)
-    email_body = Column(Text, nullable=False)
+    email_body = Column(Text, nullable=True)
 
     # Sendgrid specific data
     sendgrid_template_id = Column(Integer)
@@ -29,4 +29,4 @@ class EmailCandidate(Base):
     sent_date = Column(Text, default=make_timestamp)
 
     # Relationships
-    user = relationship(User, backref="email_candidate")
+    #user = relationship(User, backref="email_candidate")
