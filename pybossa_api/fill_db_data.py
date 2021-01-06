@@ -10,7 +10,7 @@ headers = {
 }
 
 
-def fill_taskrun(project_dict, write=True):
+def fill_taskrun(project_dict, category_ids, write=True):
     '''
     Input: List of project_ids
     Output: csv file with taskrun info
@@ -48,7 +48,8 @@ def fill_taskrun(project_dict, write=True):
                                              task_run['info'],
                                              project_name,
                                              user_info['fullname'],
-                                             user_info['email_addr']]
+                                             user_info['email_addr'],
+                                             category_ids[project_name]]
             if i == last:
                 lastID = task_run['id']
         # Since we can only retrieve 100 tasks at a time...
@@ -80,28 +81,30 @@ def fill_taskrun(project_dict, write=True):
                                                  task_run['info'],
                                                  project_name,
                                                  user_info['fullname'],
-                                                 user_info['email_addr']]
+                                                 user_info['email_addr'],
+                                                 category_ids[project_name]]
                 if i == last:
                     lastID = task_run['id']
     if write:
-        with open('rubyruby.csv', 'w') as f:
+        with open('taskruns.csv', 'w') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',
                                 quoting=csv.QUOTE_MINIMAL)
             writer.writerow(["id", "created", "project_id", "task_id",
                              "user_id", "finish_time", 'task_type',
-                             'project_name', 'name', 'email_addr'])
+                             'project_name', 'name', 'email_addr',
+                             'category'])
             for i in task_dict:
                 tr = task_dict[i]
                 if type(tr[5]) is dict and tr[3]:
                     if tr[5]['highlight_group']['topic_name'] == 'Show Entire Document':
                         writer.writerow([i, tr[0], tr[1], tr[2],
                                          tr[3], tr[4],
-                                         'form', tr[6], tr[7], tr[8]])
+                                         'form', tr[6], tr[7], tr[8], tr[9]])
                     else:
                         writer.writerow([i, tr[0], tr[1], tr[2],
                                          tr[3], tr[4],
                                          tr[5]['highlight_group']['topic_name'].lower(),
-                                         tr[6], tr[7], tr[8]])
+                                         tr[6], tr[7], tr[8], tr[9]])
     else:
         return task_dict
 
@@ -112,7 +115,12 @@ if __name__ == '__main__':
                      "Covid_Reasoningv1", "Covid_Probabilityv1",
                      "Covid_Languagev1.1", "Covid_Holisiticv1.2",
                      "Covid_Form1.0", "Covid_Evidencev1",
-                     "Covid_ArgumentRelevancev1.2"]
-    ids = get_categoryIDs(categories)
+                     "Covid_ArgumentRelevancev1.2",
+                     "Covid2_FormTriage", "Covid2_SemanticsTriage",
+                     "Covid2.1_Sources", "Covid2.1_Holistic",
+                     "Covid2.1_Probability", "Covid2.1_Reasoning",
+                     "Covid2.1_Arguments", "Covid2.1_Language",
+                     "Covid2.1_Evidence"]
+    category_ids = get_categoryIDs(project_names)
     project_dict = get_projectIDs(project_names)
-    taskruns = fill_taskrun(project_dict, write=True)
+    taskruns = fill_taskrun(project_dict, category_ids, write=True)
