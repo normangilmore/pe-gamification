@@ -79,7 +79,7 @@ def get_projectIDs(project_names):
 def get_categoryIDs(project_names):
     """
     Input: list of project names
-    Output: Dictionary mapping project shortname to category shortname
+    Output: Dictionary mapping project shortname to category id
     """
     project_ids = {}
     for project_name in project_names:
@@ -90,3 +90,19 @@ def get_categoryIDs(project_names):
         project_info = json.loads(r.text)
         project_ids[project_name] = project_info[0]['category_id']
     return project_ids
+
+
+def get_category(category_ids):
+    """
+    Input: list of category ids
+    Output: Dictionary mapping category id to category shortname
+    """
+    categories = {}
+    for cid in category_ids.values():
+        r = requests.get('https://pe.goodlylabs.org/api/category?api_key={}'
+                          '&id={}&orderby=id&limit=100'
+                          .format(PYBOSSA_API_KEY, cid),
+                          headers=headers)
+        project_info = json.loads(r.text)
+        categories[cid] = project_info[0]['short_name']
+    return categories
