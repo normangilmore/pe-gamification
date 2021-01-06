@@ -3,6 +3,7 @@ from event_model.task_run import TaskRun
 from event_model.project import Project
 from event_model.user import User
 from event_model.task import Task
+from event_model.category import Category
 from sqlalchemy.orm import sessionmaker
 import csv
 
@@ -19,6 +20,12 @@ def insert_data(filename):
             if in_user is None:
                 u = User(id=row['user_id'], name=row['name'], email_addr=row['email_addr'])
                 session.add(u)
+                session.commit()
+            # If category not in category table, then add
+            in_category = session.query(Category).filter(Category.id == row['category']).first()
+            if in_category is None:
+                c = Category(id=row['category'], name=row['category_name'])
+                session.add(c)
                 session.commit()
             # If project not in project table, then add
             in_proj = session.query(Project).filter(Project.id == row['project_id']).first()
@@ -42,4 +49,4 @@ def insert_data(filename):
         session.commit()
 
 if __name__ == "__main__":
-    insert_data('pybossa_api/biggie.csv')
+    insert_data('taskruns.csv')

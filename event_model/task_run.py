@@ -23,7 +23,7 @@ class TaskRun(Base):
     task_id = Column(Integer, ForeignKey(
         "task.id", ondelete="CASCADE"), nullable=True)
     #: User.id of the user contributing the TaskRun (only if authenticated)
-    user_id = Column(Integer, ForeignKey("profile.id"))
+    user_id = Column(Integer, ForeignKey("user.id"))
     #: UTC timestamp for when TaskRun is saved to DB.
     finish_time = Column(Text, default=make_timestamp)
     task_type = Column(Unicode(length=254), unique=False, nullable=False)

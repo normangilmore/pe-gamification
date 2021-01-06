@@ -10,7 +10,7 @@ from event_model.base import Base
 
 from event_model.utility import make_timestamp
 
-"""
+
 class Category(Base):
     __tablename__ = "category"
 
@@ -19,11 +19,10 @@ class Category(Base):
     #: Name of the Category
     name = Column(Text, nullable=False, unique=True)
     #: Slug for the Category URL
-    short_name = Column(Text, nullable=False, unique=True)
+    short_name = Column(Text, nullable=True, unique=True)
     #: Description of the Category
-    description = Column(Text, nullable=False)
+    description = Column(Text, nullable=True)
     #: UTC timestamp when the Category was created
     created = Column(Text, default=make_timestamp)
     #: Info field formatted as JSON for storing additional data
     info = Column(MutableDict.as_mutable(JSONB), default=dict())
-"""
