@@ -33,8 +33,8 @@ def fill_taskrun(project_dict, category_ids, write=True):
                 req = requests.get('https://pe.goodlylabs.org'
                                    '/api/user/{}'
                                    '?api_key={}&limit=100'
-                                   .format(user, PYBOSSA_API_KEY), 
-                                           headers=headers)
+                                   .format(user, PYBOSSA_API_KEY),
+                                   headers=headers)
                 user_info = json.loads(req.text)
                 emails[user] = user_info
             elif user is not None:
@@ -67,7 +67,8 @@ def fill_taskrun(project_dict, category_ids, write=True):
                     print("adding user:", user)
                     req = requests.get('https://pe.goodlylabs.org'
                                        '/api/user/{}?api_key={}&limit=100'
-                                       .format(user, PYBOSSA_API_KEY), headers=headers)
+                                       .format(user, PYBOSSA_API_KEY),
+                                       headers=headers)
                     user_info = json.loads(req.text)
                     emails[user] = user_info
                 elif user is not None:

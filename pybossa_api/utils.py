@@ -75,6 +75,7 @@ def get_projectIDs(project_names):
         project_ids[project_name] = (project_info[0]['id'])
     return project_ids
 
+
 def get_categoryIDs(project_names):
     """
     Input: list of project names
@@ -82,10 +83,10 @@ def get_categoryIDs(project_names):
     """
     project_ids = {}
     for project_name in project_names:
-      r = requests.get('https://pe.goodlylabs.org/api/project?api_key={}'
-                       '&short_name={}&orderby=id&limit=100'
-                       .format(PYBOSSA_API_KEY, project_name),
-                       headers=headers)
-      project_info = json.loads(r.text)
-      project_ids[project_name] = project_info[0]['category_id']
+        r = requests.get('https://pe.goodlylabs.org/api/project?api_key={}'
+                         '&short_name={}&orderby=id&limit=100'
+                         .format(PYBOSSA_API_KEY, project_name),
+                         headers=headers)
+        project_info = json.loads(r.text)
+        project_ids[project_name] = project_info[0]['category_id']
     return project_ids
