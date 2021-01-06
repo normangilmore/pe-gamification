@@ -2,7 +2,7 @@ import requests
 import json
 import os
 import csv
-from utils import get_projectIDs, get_categoryIDs
+from utils import get_projectIDs, get_categoryIDs, get_category
 
 PYBOSSA_API_KEY = os.getenv('PYBOSSA_API_KEY')
 headers = {
@@ -10,7 +10,7 @@ headers = {
 }
 
 
-def fill_taskrun(project_dict, category_ids, write=True):
+def fill_taskrun(project_dict, category_ids, category_dict, write=True):
     '''
     Input: List of project_ids
     Output: csv file with taskrun info
@@ -49,7 +49,8 @@ def fill_taskrun(project_dict, category_ids, write=True):
                                              project_name,
                                              user_info['fullname'],
                                              user_info['email_addr'],
-                                             category_ids[project_name]]
+                                             category_ids[project_name],
+                                             category_dict[category_ids[project_name]]]
             if i == last:
                 lastID = task_run['id']
         # Since we can only retrieve 100 tasks at a time...
@@ -83,7 +84,8 @@ def fill_taskrun(project_dict, category_ids, write=True):
                                                  project_name,
                                                  user_info['fullname'],
                                                  user_info['email_addr'],
-                                                 category_ids[project_name]]
+                                                 category_ids[project_name],
+                                                 category_dict[category_ids[project_name]]]
                 if i == last:
                     lastID = task_run['id']
     if write:
@@ -93,19 +95,19 @@ def fill_taskrun(project_dict, category_ids, write=True):
             writer.writerow(["id", "created", "project_id", "task_id",
                              "user_id", "finish_time", 'task_type',
                              'project_name', 'name', 'email_addr',
-                             'category'])
+                             'category', 'category_name'])
             for i in task_dict:
                 tr = task_dict[i]
                 if type(tr[5]) is dict and tr[3]:
                     if tr[5]['highlight_group']['topic_name'] == 'Show Entire Document':
                         writer.writerow([i, tr[0], tr[1], tr[2],
                                          tr[3], tr[4],
-                                         'form', tr[6], tr[7], tr[8], tr[9]])
+                                         'form', tr[6], tr[7], tr[8], tr[9], tr[10]])
                     else:
                         writer.writerow([i, tr[0], tr[1], tr[2],
                                          tr[3], tr[4],
                                          tr[5]['highlight_group']['topic_name'].lower(),
-                                         tr[6], tr[7], tr[8], tr[9]])
+                                         tr[6], tr[7], tr[8], tr[9], tr[10]])
     else:
         return task_dict
 
@@ -123,5 +125,6 @@ if __name__ == '__main__':
                      "Covid2.1_Arguments", "Covid2.1_Language",
                      "Covid2.1_Evidence"]
     category_ids = get_categoryIDs(project_names)
+    category_dict = get_category(category_ids)
     project_dict = get_projectIDs(project_names)
-    taskruns = fill_taskrun(project_dict, category_ids, write=True)
+    taskruns = fill_taskrun(project_dict, category_ids, category_dict, write=True)
