@@ -12,6 +12,6 @@
    - Set the python path 
    `export PYTHONPATH=.`
    - Run `event_model/create_tables.py` (might have to drop the tables, then run this file again if you've previously ran it)
-   - Run `event_model/insert_data.py`. This will add all taskrun information (the fields listed above), badge names from `badge_list.csv`, and email candidates. See `event_model/insert_data.py`, `event_model/query_badge.py`, and `event_model/run_queries.py` for more information. 
+   - Run `event_model/insert_data.py`. This will add all taskrun information (the fields listed above), badge names from `badge_list.csv`, and email candidates. See `event_model/insert_data.py`, `event_model/query_badge.py`, and `event_model/query_badge.py` for more information. 
 
 
