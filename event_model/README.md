@@ -5,7 +5,7 @@
    - `fill_db_data.py` requires a list of project names and generates a CSV file with the following columns (added parentheses for clarification): 
    
       `id(taskrun),created(taskrun),project_id,task_id,user_id,finish_time(taskrun),task_type,project_name,name(user),email_addr(user),category,category_name`
-   *if you want to skip this step, my most recent run as of 1/6/2021 is avalabile in `taskruns.csv`*
+   - *if you want to skip this step, my most recent run as of 1/6/2021 is avalabile in `taskruns.csv`*
       
 2. Inserting the data
    - Run docker (Open docker, then open new terminal window and run the command `docker-compose up`)
