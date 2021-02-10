@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import func
 from event_model.base import Base
-
+from event_model.helper import dictmaker
 
 # Tables in Gamify Model
 from event_model.task_run import TaskRun
@@ -27,16 +27,17 @@ def run_queries():
     # Add to email candidate table all users who have done >=10 tasks per these categories ^^
     for task in tasks:
         query = session.query(User.name, User.email_addr, func.count("*")).join(
-            TaskRun).filter(TaskRun.task_type == task).group_by(User.id).having(func.count("*") >= 10).all()
+            TaskRun).filter(TaskRun.task_type == task).group_by(User.id).having(func.count("*") >= 25).all()
         print("Query {} results: ".format(task))
         for row in query:
-            in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == "10 " + task).first()
+            in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == "25 " + task).first()
             if in_email is None:
-                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="10 " + task)
+                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, sendgrid_template_id="d-915ae8191de2421eaa16c43790719632", 
+                    sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-915ae8191de2421eaa16c43790719632"))
                 session.add(u)
                 session.commit()
-
-    totals = [25, 50]
+    """
+    totals = [50, 100]
     # Add total task badges to email candidate table
     for total in totals:
         query = session.query(User.name, User.email_addr, func.count("*")).join(
@@ -49,6 +50,6 @@ def run_queries():
                 session.add(u)
                 session.commit()
 
-
+    """
 if __name__ == "__main__":
     run_queries()

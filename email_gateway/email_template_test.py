@@ -1,30 +1,24 @@
 import sendgrid
-
-sg = sendgrid.SendGridAPIClient('INSERT KEY')
+import os
+sg = sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
 data = {
   "personalizations": [
     {
       "to": [
         {
-          "email":"norman@thusly.co"
+          "email":"rubywerman@berkeley.edu"
         }
       ],
-      "subject": "Sendgrid Test Email",
        "dynamic_template_data":{
-            "first_name":"Norman"
+            "first_name":"Ruby", 
+            "task_name":"Semantics"
           }
     }
   ],
   "from": {
-    "email": "conormora@berkeley.edu"
+    "email": "publiceditor@goodlylabs.org"
   },
-  "content": [
-    {
-      "type": "text/plain",
-      "value": "Sending a test email!"
-    }
-  ],
-  "template_id":"INSERT TEMPLATE ID"
+  "template_id":"d-915ae8191de2421eaa16c43790719632"
 }
 response = sg.client.mail.send.post(request_body=data)
 print(response.status_code)

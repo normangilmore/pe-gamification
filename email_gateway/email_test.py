@@ -1,26 +1,19 @@
 import sendgrid
 import os
-
 sg = sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_API_KEY"))
 data = {
   "personalizations": [
     {
       "to": [
         {
-          "email": "conormora@berkeley.edu"
-        },
-        {
-            "email": "norman@thusly.co"
-        },
-        {
-            "email": "sumana.nukala@berkeley.edu"
+          "email": "rubywerman@gmail.com"
         }
       ],
       "subject": "Sendgrid Test Email"
     }
   ],
   "from": {
-    "email": "publiceditor@goodlylabs.org"
+    "email": "rubywerman@berkeley.edu"
   },
   "content": [
     {

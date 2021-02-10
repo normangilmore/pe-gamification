@@ -24,7 +24,7 @@ class EmailCandidate(Base):
     email_body = Column(Text, nullable=True)
 
     # Sendgrid specific data
-    sendgrid_template_id = Column(Integer)
+    sendgrid_template_id = Column(Text, nullable=False)
     sendgrid_info = Column(MutableDict.as_mutable(JSONB), default=dict())
     sent_date = Column(Text, default=make_timestamp)
 
