@@ -27,6 +27,7 @@ class EmailCandidate(Base):
     sendgrid_template_id = Column(Text, nullable=False)
     sendgrid_info = Column(MutableDict.as_mutable(JSONB), default=dict())
     sent_date = Column(Text, default=make_timestamp)
+    sent = Column(Text, default="False")
 
     # Relationships
     #user = relationship(User, backref="email_candidate")

@@ -12,7 +12,7 @@ import csv
 engine = create_engine("postgresql://pe_dashboard:test-only-yVu8W5azUtZ8RPSWX42o@localhost:5432/pe_dashboard", echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
-
+# Note: potential bug when not all entries are added in first pass?
 def insert_data(filename):
     with open(filename, newline='') as f:
         reader = csv.DictReader(f)
@@ -52,6 +52,6 @@ def insert_data(filename):
             session.commit()
 
 if __name__ == "__main__":
-    insert_data('taskruns.csv')
+    insert_data('ruby.csv')
     insert_badges('badge_list.csv')
     run_queries()
