@@ -1,7 +1,9 @@
 Steps to Send Email
-python3 event_model/drop_tables.py
-python3 event_model/create_tables.py
-python3 event_model/insert_data.py
-python3 event_model/query_badge.py
-python3 email_gateway/send_badge_emails.py
 
+Open terminal and run `docker-compose up`
+In a new terminal, set your sendgrid API key, then run the following files:
+	python3 event_model/drop_tables.py
+	python3 event_model/create_tables.py
+	python3 event_model/insert_data.py
+	python3 event_model/query_badge.py
+	python3 email_gateway/send_badge_emails.py
