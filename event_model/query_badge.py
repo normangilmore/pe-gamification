@@ -23,10 +23,12 @@ def run_queries():
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    tasks = ["a Quoted Sources", "a Reasoning", "a Probability", "a Language", "a Form", "an Evidence", "an Argument"]
+    #tasks = ["quoted sources", "reasoning", "probability", "language", "form", "evidence", "argument"]
+    tasks_a = ["quoted sources", "reasoning", "probability", "language", "form"] #seperate vowel and consenant tasks for grammar in the email template
+    tasks_an = ["evidence", "argument"]
     # Add to email candidate table all users who have done >= 25 tasks per these categories ^^
     metric = 25
-    for task in tasks:
+    for task in tasks_a:
         query = session.query(User.name, User.email_addr, func.count("*")).join(
             TaskRun).filter(TaskRun.task_type == task).group_by(User.id).having(func.count("*") >= metric).all()
         print("Query {} results: ".format(task))
@@ -36,6 +38,18 @@ def run_queries():
                 # This is redundant but I'm testing different ways to trigger the emails
                 u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, sendgrid_template_id="d-915ae8191de2421eaa16c43790719632", 
                                    sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-915ae8191de2421eaa16c43790719632"))
+                session.add(u)
+                session.commit()
+    for task in tasks_an:
+        query = session.query(User.name, User.email_addr, func.count("*")).join(
+            TaskRun).filter(TaskRun.task_type == task).group_by(User.id).having(func.count("*") >= metric).all()
+        print("Query {} results: ".format(task))
+        for row in query:
+            in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == "25 " + task).first()
+            if in_email is None:
+                # This is redundant but I'm testing different ways to trigger the emails
+                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, sendgrid_template_id="d-64d3613c1a034b6496738f3e688067a8", 
+                                   sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-64d3613c1a034b6496738f3e688067a8"))
                 session.add(u)
                 session.commit()
 
@@ -48,11 +62,11 @@ def run_queries():
         for row in query:
             in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == str(total) + " tasks").first()
             if in_email is None:
-                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body=str(total) + " tasks", sendgrid_template_id="d-3097cd29dad94ca3a87ea4469fe4e709 ", 
-                                   sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-3097cd29dad94ca3a87ea4469fe4e709 "))
+                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body=str(total) + " tasks", sendgrid_template_id="d-3097cd29dad94ca3a87ea4469fe4e709", 
+                                   sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name="", template_id="d-3097cd29dad94ca3a87ea4469fe4e709"))
                 session.add(u)
                 session.commit()
 
-
+    session.close()           
 if __name__ == "__main__":
     run_queries()

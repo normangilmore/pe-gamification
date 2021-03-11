@@ -1,0 +1,7 @@
+Steps to Send Email
+python3 event_model/drop_tables.py
+python3 event_model/create_tables.py
+python3 event_model/insert_data.py
+python3 event_model/query_badge.py
+python3 email_gateway/send_badge_emails.py
+

@@ -23,12 +23,14 @@ def insert_data(filename):
                 u = User(id=row['user_id'], name=row['name'], email_addr=row['email_addr'])
                 session.add(u)
                 session.commit()
+                print("Adding user: ", row['name'])
             # If category not in category table, then add
             in_category = session.query(Category).filter(Category.id == row['category']).first()
             if in_category is None:
                 c = Category(id=row['category'], name=row['category_name'])
                 session.add(c)
                 session.commit()
+                print("Adding category: ", row['category'])
             # If project not in project table, then add
             in_proj = session.query(Project).filter(Project.id == row['project_id']).first()
             if in_proj is None:
@@ -37,6 +39,7 @@ def insert_data(filename):
                             category_id=row['category'])
                 session.add(p)
                 session.commit()
+                print("Adding project: ", row['project_name'])
             # If task not in task table, then add
             in_task = session.query(Task).filter(Task.id == row['task_id']).first()
             if in_task is None:
@@ -50,8 +53,7 @@ def insert_data(filename):
                          task_type=row['task_type'])
             session.add(tr)
             session.commit()
-
+    session.close()
 if __name__ == "__main__":
-    insert_data('ruby.csv')
+    insert_data('taskruns.csv')
     insert_badges('badge_list.csv')
-    run_queries()
