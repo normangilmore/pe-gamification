@@ -61,6 +61,9 @@ def send_emails():
       except exceptions.ForbiddenError as e:
         print(e.body)
         exit()
+      except exceptions.UnauthorizedError as e:
+        print(e.body)
+        exit()
       
       # Update "sent" field to True so we don't resend emails
       #session.query(EmailCandidate).filter(EmailCandidate.sent == "False").update({EmailCandidate.sent: "True"})
