@@ -55,5 +55,5 @@ def insert_data(filename):
             session.commit()
     session.close()
 if __name__ == "__main__":
-    insert_data('taskruns.csv')
+    insert_data('taskruns.csv') 
     insert_badges('badge_list.csv')

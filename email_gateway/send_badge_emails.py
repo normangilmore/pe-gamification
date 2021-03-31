@@ -43,7 +43,9 @@ def send_emails():
             ],
              "dynamic_template_data":{
                   "first_name": row.sendgrid_info['personalizations'][0]['dynamic_template_data']['first_name'], 
-                  "task_name": row.sendgrid_info['personalizations'][0]['dynamic_template_data']['task_name']
+                  "task_name": row.sendgrid_info['personalizations'][0]['dynamic_template_data']['task_name'],
+                  "imageURI": row.image,
+                  "width": 200
                 }
           }
         ],
@@ -55,6 +57,7 @@ def send_emails():
       try:
         response = sg.client.mail.send.post(request_body=data)
         print("Email sent to: ", row.to_username)
+        [print() for i in range(4)]
       except exceptions.BadRequestsError as e:
         print(e.body)
         exit()
@@ -66,8 +69,8 @@ def send_emails():
         exit()
       
       # Update "sent" field to True so we don't resend emails
-      #session.query(EmailCandidate).filter(EmailCandidate.sent == "False").update({EmailCandidate.sent: "True"})
-      #session.commit() # Uncomment this line when you're ready to send
+      session.query(EmailCandidate).filter(EmailCandidate.sent == "False").update({EmailCandidate.sent: "True"})
+      session.commit() # Uncomment this line when you're ready to send
     session.close()
 
 

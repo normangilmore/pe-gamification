@@ -26,6 +26,8 @@ def run_queries():
     #tasks = ["quoted sources", "reasoning", "probability", "language", "form", "evidence", "argument"]
     tasks_a = ["quoted sources", "reasoning", "probability", "language", "form"] #seperate vowel and consenant tasks for grammar in the email template
     tasks_an = ["evidence", "argument"]
+    task_images_an = {"evidence":"https://imgur.com/YON6oNP.png", "argument":"https://imgur.com/4zC2vNi.png"}
+    task_images_a = {"quoted sources": "https://imgur.com/Yx2PCWV.png", "reasoning":"https://imgur.com/zHLzq9C.png", "probability":"https://imgur.com/AATLKk2.png", "language":"https://imgur.com/pLlMw6F.png", "form":"https://imgur.com/yzWoRUX.png"} 
     # Add to email candidate table all users who have done >= 25 tasks per these categories ^^
     metric = 25
     for task in tasks_a:
@@ -36,7 +38,7 @@ def run_queries():
             in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == "25 " + task).first()
             if in_email is None:
                 # This is redundant but I'm testing different ways to trigger the emails
-                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, sendgrid_template_id="d-915ae8191de2421eaa16c43790719632", 
+                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, image = task_images_a[task], sendgrid_template_id="d-915ae8191de2421eaa16c43790719632", 
                                    sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-915ae8191de2421eaa16c43790719632"))
                 session.add(u)
                 session.commit()
@@ -48,7 +50,7 @@ def run_queries():
             in_email = session.query(EmailCandidate).filter(EmailCandidate.to_email_addr == row[1]).filter(EmailCandidate.email_body == "25 " + task).first()
             if in_email is None:
                 # This is redundant but I'm testing different ways to trigger the emails
-                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, sendgrid_template_id="d-64d3613c1a034b6496738f3e688067a8", 
+                u = EmailCandidate(to_email_addr=row[1], to_username=row[0], email_body="25 " + task, image = task_images_an[task], sendgrid_template_id="d-64d3613c1a034b6496738f3e688067a8", 
                                    sendgrid_info=dictmaker(email=row[1], first_name=row[0], task_name=task, template_id="d-64d3613c1a034b6496738f3e688067a8"))
                 session.add(u)
                 session.commit()

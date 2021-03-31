@@ -28,6 +28,7 @@ class EmailCandidate(Base):
     sendgrid_info = Column(MutableDict.as_mutable(JSONB), default=dict())
     sent_date = Column(Text, default=make_timestamp)
     sent = Column(Text, default="False")
+    image = Column(Text, nullable=True)
 
     # Relationships
     #user = relationship(User, backref="email_candidate")
