@@ -5,8 +5,8 @@ from event_model.user import User
 from event_model.task import Task
 from event_model.category import Category
 from sqlalchemy.orm import sessionmaker
-from insert_badges import insert_badges
-from query_badge import run_queries
+from scripts.insert_badges import insert_badges
+from scripts.query_badge import run_queries
 import csv
 
 engine = create_engine("postgresql://pe_dashboard:test-only-yVu8W5azUtZ8RPSWX42o@localhost:5432/pe_dashboard", echo=True)
@@ -55,5 +55,5 @@ def insert_data(filename):
             session.commit()
     session.close()
 if __name__ == "__main__":
-    insert_data('taskruns.csv') 
+    insert_data('taskRuns_42121.csv') 
     insert_badges('badge_list.csv')

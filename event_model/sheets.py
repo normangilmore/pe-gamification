@@ -24,8 +24,6 @@ port = '5432'  # Change this to reflect your port.
 db_name = 'pe_dashboard'
 
 # Query we want to run. Preferably, only read-only query
-# Also, note that Google Sheets has limitations on size
-# so this will not be good for a big data like project.
 
     # SELECT name, email, COUNT(*)
     # FROM users

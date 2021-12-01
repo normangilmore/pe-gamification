@@ -1,0 +1,5 @@
+Notes:
+Unsure if insert_data.py is inserting all the data
+Http errors: was able to successfully trigger email sometimes but other times got a 400 error "bad request"
+Test 50 total tasks badge with ruby.csv
+Proof emails w/ Nick
